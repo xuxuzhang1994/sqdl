@@ -22,6 +22,15 @@ img {
     display: none;
   }
 
+  .ruleImg {
+    position: absolute;
+    z-index: 99;
+    left: 1.5rem;
+    top: 0.8rem;
+    width: 1.24rem;
+    cursor: pointer;
+  }
+
   .topbar {
     display: flex;
     position: fixed;
@@ -85,23 +94,68 @@ img {
       cursor: pointer;
     }
     .logout {
-      height: 0.32rem;
+      // height: 0.32rem;
       margin-left: 0.2rem;
       position: relative;
-      img {
-        height: 100%;
+      display: flex;
+      align-items: center;
+      padding: 0.1rem 0;
+      &:hover {
+        .outbox {
+          display: block !important;
+        }
+        .jiao {
+          transform: rotate(180deg);
+        }
       }
-      div {
-        position: absolute;
-        left: 0.4rem;
-        top: -0.01rem;
-        color: #fff;
-        z-index: 99999;
+      .avatar {
+        height: 100%;
+        width: 0.36rem;
+      }
+      .name {
         width: 1rem;
         overflow: hidden;
         text-overflow: ellipsis;
         word-break: keep-all;
         font-size: 0.2rem;
+        color: #a8855f;
+        margin: 0 0.1rem;
+        cursor: pointer;
+      }
+      .jiao {
+        width: 0.15rem;
+        height: 0.1rem;
+        transition: 0.3s;
+      }
+      .outbox {
+        position: absolute;
+        bottom: -1.2rem;
+        z-index: 99;
+        background: url('../images/login/logoutbg.png');
+        background-size: contain;
+        height: 1.25rem;
+        width: 2rem;
+        padding: 0.2rem 0.2rem;
+        display: none;
+        &:hover {
+          display: block !important;
+        }
+        .oname {
+          color: #fff;
+          // border-bottom: 1px solid #fff;
+          padding: 2px 0;
+          margin-top: 0.05rem;
+          opacity: 0.8;
+          font-size: 0.2rem;
+          width: 1.6rem;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          word-break: keep-all;
+        }
+        .goout {
+          height: 0.4rem;
+          cursor: pointer;
+        }
       }
     }
   }
@@ -127,6 +181,10 @@ img {
 
       .item {
         cursor: pointer;
+        &.active {
+          font-weight: bold;
+          font-size: 0.16rem;
+        }
       }
     }
 
@@ -240,11 +298,13 @@ img {
       position: absolute;
       top: 1rem;
       left: 3rem;
-      color: #ab8862;
+      color: #815c2c;
       font-weight: bold;
       font-size: 0.43rem;
       font-style: italic;
-
+      span {
+        color: #a0522f;
+      }
       .top {
       }
 
@@ -396,6 +456,18 @@ img {
           right: -0.4rem;
           bottom: 0.2rem;
         }
+        .search {
+          width: 0.25rem;
+          height: 0.25rem;
+          position: absolute;
+          right: -0.1rem;
+          top: 0.25rem;
+          transition: 0.3s;
+          cursor: pointer;
+          &:hover {
+            transform: scale(1.1);
+          }
+        }
       }
     }
   }
@@ -408,11 +480,13 @@ img {
       position: absolute;
       top: 1rem;
       left: 3rem;
-      color: #ab8862;
+      color: #815c2c;
       font-weight: bold;
       font-size: 0.43rem;
       font-style: italic;
-
+      span {
+        color: #a0522f;
+      }
       .top {
       }
 
@@ -448,6 +522,18 @@ img {
           right: -0.4rem;
           top: 0.5rem;
         }
+        .search {
+          width: 0.25rem;
+          height: 0.25rem;
+          position: absolute;
+          right: -0.1rem;
+          top: 0.77rem;
+          transition: 0.3s;
+          cursor: pointer;
+          &:hover {
+            transform: scale(1.1);
+          }
+        }
       }
     }
   }
@@ -461,6 +547,39 @@ img {
       left: 10.5rem;
       width: 4.36rem;
       cursor: pointer;
+    }
+    .list {
+      position: absolute;
+      display: flex;
+      justify-content: space-between;
+      top: 3.3rem;
+      width: 6rem;
+      left: 3.2rem;
+      // transform: translateX(-50%);
+      .item {
+        width: 1.6rem;
+        height: 3.5rem;
+        // border: 1px solid #000000;
+        position: relative;
+        img {
+          width: 0.82rem;
+          position: absolute;
+          right: -0.45rem;
+          bottom: 0.13rem;
+        }
+        .search {
+          width: 0.25rem;
+          height: 0.25rem;
+          position: absolute;
+          right: -0.1rem;
+          top: 0.77rem;
+          transition: 0.3s;
+          cursor: pointer;
+          &:hover {
+            transform: scale(1.1);
+          }
+        }
+      }
     }
   }
 
@@ -722,7 +841,15 @@ img {
     .successtext {
       text-align: center;
       margin: 1rem 0;
+      margin-top: 0.3rem;
+      font-size: 0.25rem;
+      font-weight: bold;
     }
+  }
+  video {
+    margin: 0 auto;
+    display: -webkit-box;
+    height: 4rem;
   }
 }
 .login {
@@ -745,6 +872,14 @@ img {
 .rule {
   .container {
     padding-top: 0.8rem !important;
+    .content {
+      max-height: 7rem;
+      overflow-y: auto;
+      color: #815c2c;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
   }
   .ruleimg {
     width: 5rem;

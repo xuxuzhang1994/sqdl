@@ -5,7 +5,9 @@ import request from '../../request';
 // import 'swiper/swiper.less';
 import { history } from 'umi';
 
-let formData = {};
+let formData = {
+  source: '1',
+};
 let swiper;
 
 export default () => {
@@ -21,10 +23,91 @@ export default () => {
   const [swiperIndex, setSwiperIndex] = useState(0);
   const [indexData, setIndexData] = useState({});
   const [radioStatus, setRadioStatus] = useState(false);
+  const [showGift, setShowGift] = useState(false);
+  const [showRule, setShowRule] = useState(true);
   let [time, setTime] = useState(0);
   const [uid, setUid] = useState('');
   const [userInfo, setUserInfo] = useState({});
   const [errText, setErrText] = useState('登錄失敗o(╥﹏╥)o，請再試一次~');
+  const ruleText = [
+    '',
+    `<p>
+    <span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">活動時間：</span> </span>
+</p>
+<p>
+    <span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px">2020</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px">/10/</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px">2</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px">6 </span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px">1</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px">4</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px">:00 ~&nbsp;</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px;background: #FFFFFF">2020/</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px;background: #FFFFFF">11</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px;background: #FFFFFF">/</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px;background: #FFFFFF">23</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px;background: #FFFFFF">&nbsp;1</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px;background: #FFFFFF">8</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px;background: #FFFFFF">:00</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px">&nbsp;&nbsp;</span>
+</p>
+<p>
+    <span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><br/></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">活動規則：</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><br/></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px">1. 事前登錄活動期間，網頁將統計預約人數。遊戲正式上市後，</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">所有進入游戲的</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">公主殿下，</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">均</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">可在遊戲</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">内</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">領取對應的累計預約獎勵。</span>&nbsp;</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><br/></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px">2. 最終獎勵將根據【事前登錄預約累計人數】所對應的獎勵發放。</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><br/></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">累計預約獎勵具體如下：</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><br/></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">累計預約</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px">5</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">萬人，</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">遊戲正式上市</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">時將贈送：體力</span>*200、中級強化液*10</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">；</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><br/></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">累計預約</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px">10</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">萬人</span>, </span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">遊戲正式上市</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">時將贈送：熊耳</span>*1、中級思念精華*20</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">；</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><br/></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">累計預約</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px">15</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">萬人，</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">遊戲正式上市</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">時將贈送：</span>SSR帽子灰王子（阿爾貝）*1、記憶碎片*20</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">；</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><br/></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">累計預約</span>20萬人，</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">遊戲正式上市</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">時將贈送：魔法能量石</span>*30、幻水晶*200</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">；</span></span>
+</p>
+<p>
+    <span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">累計預約</span>30萬人，</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">遊戲正式上市</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">時將贈送：</span>SSR衣服灰王子（阿爾貝）*1、預約專屬徽章+頭像框</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">。</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><br/></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px">3. 獎勵將會在遊戲正式上市後</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">開始</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">發放，屆時請</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">及時在</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">遊戲內</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">的</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">信箱</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">中</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">領取</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">。</span></span>
+</p>
+<p>
+    <span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px">&nbsp;</span>
+</p>
+<p>
+    <span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px">&nbsp;</span>
+</p>
+<p>
+    <span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">如果您在遊戲體驗的過程有任何的意見或者建議，均可通過</span>FB官方粉絲團（FB: @TheThroneOfGirlTW）以及客服信箱（thethroneofgirlcs@yahoo.com）將您寶貴的建議提供給我們。</span>
+</p>
+<p>
+    <span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><br clear="all" style="page-break-before:always"/></span>
+</p>
+<p>
+    <br/>
+</p>`,
+    `<p>
+<span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">活動時間：</span></span>
+</p>
+<p>
+<span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px">2020/10/26 14:00 ~&nbsp;2020/11/23 18:00&nbsp;</span>
+</p>
+<p>
+<span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><br/></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">活動規則：</span>&nbsp;</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><br/></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px">1.</span><span style="font-family: 微软雅黑;color: #C00000;letter-spacing: 0;font-size: 14px">&nbsp;</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">好友召集活動活動期間，各位</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">公主殿下</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">可</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">透過</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">登錄後</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">點擊【召集好友】獲取您的</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">【專屬網址】。好友打開您的【專屬網址】後，完成事前登錄，</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">即計算爲</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">成功召集一位好友。</span>&nbsp;</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><br/></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px">2.&nbsp;最終獎勵將根據</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">本</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">頁面上【您所召集的好友數量】所對應的獎勵</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">進行</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">發放。</span></span>
+</p>
+<p>
+<span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">累計獎勵具體如下：</span>&nbsp;</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><br/></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">累計召集</span>1人,&nbsp;</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">遊戲正式上市</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">時贈送：</span>&nbsp;幻水晶*100、中級強化液*10</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">；</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><br/></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">累計召集</span>2人，</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">遊戲正式上市</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">時贈送：</span>&nbsp;魔法能量石*5、拉卡*50000</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">；</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><br/></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">累計召集</span>3人，</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">遊戲正式上市</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">時贈送：</span>&nbsp;SR衣服秋季陽光（阿爾貝）、SR衣服初春戀人曲（女主）</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">。</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><br/></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px">3.&nbsp;獎勵將會在遊戲正式上市後</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">開始</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">發放，屆時</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">請使用【與本次登錄相同的第三方賬號】登錄游戲，即可在</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">遊戲內</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">的</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">信箱</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">中</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">領取</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">。</span></span>
+</p>
+<p>
+<span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px">&nbsp;</span>
+</p>
+<p>
+<span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px">&nbsp;</span>
+</p>
+<p>
+<span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">如果您在遊戲體驗的過程有任何的意見或者建議，均可通過</span>FB官方粉絲團（FB: @TheThroneOfGirlTW）以及客服信箱（thethroneofgirlcs@yahoo.com）將您寶貴的建議提供給我們。</span>
+</p>
+<p>
+<br/>
+</p>`,
+    `<p style="margin-left:0;text-indent:0">
+<span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">請</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">各位</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">公主殿下</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">按照以下步驟：</span>&nbsp;</span>
+</p>
+<p style="margin-left:0;text-indent:0">
+<span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px">1. 追蹤按讚粉絲團&nbsp;</span>
+</p>
+<p style="margin-left:0;text-indent:0">
+<span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px">2</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px">. 公開分享貼文&nbsp;</span>
+</p>
+<p style="margin-left:0;text-indent:0">
+<span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">即完成</span>Facebook粉絲團抽獎活動。&nbsp;</span>
+</p>
+<p style="margin-left:0;text-indent:0">
+<span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">抽獎活動後續將全部在官方</span>Facebook粉絲團舉行，具體細則請參考粉絲團相關貼文。</span>
+</p>
+<p style="margin-left:0;text-indent:0">
+<span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px">&nbsp;</span>
+</p>
+<p>
+<span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">如果您在遊戲體驗的過程有任何的意見或者建議，均可通過</span>FB官方粉絲團（FB: @TheThroneOfGirlTW）以及客服信箱（thethroneofgirlcs@yahoo.com）將您寶貴的建議提供給我們。</span>
+</p>
+<p>
+<br/>
+</p>`,
+    '',
+  ];
 
   useEffect(() => {
     swiper = new Swiper('.swiper-container', {
@@ -157,6 +240,7 @@ export default () => {
       .post('/api/sendCode', {
         data: {
           mobile: formData.phone,
+          source: formData.source,
         },
       })
       .then(data => {});
@@ -192,7 +276,7 @@ export default () => {
           // uid: formData.share_id,
           mobile: formData.phone,
           code: formData.code,
-          source: 1,
+          source: formData.source,
           uid: localStorage.getItem('share_id'),
         },
       })
@@ -267,12 +351,20 @@ export default () => {
           </a>
 
           {uid ? (
-            <div onClick={() => setUid('')} className={styles.logout}>
+            <div className={styles.logout}>
               <img
-                className={styles.loginbtn}
-                src={require('../images/login/logout.png')}
+                className={styles.avatar}
+                src={require('../images/login/avatar.png')}
               />
-              <div>{userInfo.name}</div>
+              <div className={styles.name}>{userInfo.name}</div>
+              <img
+                className={styles.jiao}
+                src={require('../images/login/jiao.png')}
+              />
+              <div className={styles.outbox}>
+                <div className={styles.oname}>{userInfo.name}</div>
+                <div className={styles.goout} onClick={() => setUid('')}></div>
+              </div>
             </div>
           ) : (
             <img
@@ -287,20 +379,45 @@ export default () => {
       {swiperIndex != 0 && (
         <div className={styles.navbar}>
           <div className={styles.left}>
-            <div className={styles.item} onClick={() => swiper.slideTo(0)}>
+            <div
+              className={
+                styles.item + ' ' + (swiperIndex == 0 && styles.active)
+              }
+              onClick={() => swiper.slideTo(0)}
+            >
               首页
             </div>
-            <div className={styles.item} onClick={() => swiper.slideTo(1)}>
-              立即预约
+            <div
+              className={
+                styles.item + ' ' + (swiperIndex == 1 && styles.active)
+              }
+              onClick={() => swiper.slideTo(1)}
+            >
+              立即預約
             </div>
-            <div className={styles.item} onClick={() => swiper.slideTo(2)}>
+            <div
+              className={
+                styles.item + ' ' + (swiperIndex == 2 && styles.active)
+              }
+              onClick={() => swiper.slideTo(2)}
+            >
               召集好友
             </div>
-            <div className={styles.item} onClick={() => swiper.slideTo(3)}>
-              福利抽奖
+            <div
+              className={
+                styles.item + ' ' + (swiperIndex == 3 && styles.active)
+              }
+              onClick={() => swiper.slideTo(3)}
+            >
+              福利抽獎
             </div>
-            <div className={styles.item} onClick={() => swiper.slideTo(4)}>
-              游戏特色
+            <div
+              className={
+                styles.item + ' ' + (swiperIndex == 4 && styles.active)
+              }
+              onClick={() => swiper.slideTo(4)}
+            >
+              遊戲特色
             </div>
           </div>
           <div className={styles.right}>
@@ -382,9 +499,17 @@ export default () => {
             </div>
           </div>
           <div className={'swiper-slide ' + styles.slide2}>
+            <img
+              onClick={() => setShowRuleModal(true)}
+              src={require('../images/01/rule.png')}
+              className={styles.ruleImg}
+              alt=""
+            />
             <div className={styles.numbers}>
-              <div className={styles.top}>已加入/per-registration</div>
-              <div className={styles.bottom}>{indexData.total}位公主</div>
+              <div className={styles.top}>已加入/pre-registration</div>
+              <div className={styles.bottom}>
+                <span>{indexData.total}</span>位公主
+              </div>
             </div>
             <div className={styles.process}>
               {/* <div className={styles.imgs}>
@@ -453,19 +578,43 @@ export default () => {
                     src={require('../images/01/yidacheng.png')}
                   />
                 )}{' '}
+                <img
+                  onClick={() => {
+                    setShowGift(true);
+                  }}
+                  className={styles.search}
+                  src={require('../images/03/search.png')}
+                />
               </div>
             </div>
             <img src={require('../images/01/01.png')} alt="" />
           </div>
           <div className={'swiper-slide ' + styles.slide3}>
+            <img
+              onClick={() => setShowRuleModal(true)}
+              src={require('../images/01/rule.png')}
+              className={styles.ruleImg}
+              alt=""
+            />
             <div className={styles.numbers}>
               <div className={styles.top}>已召集/invitation</div>
-              <div className={styles.bottom}>{userInfo.number}位好友</div>
+              <div className={styles.bottom}>
+                <span>{userInfo.number}</span>位好友
+              </div>
               <div className={styles.list}>
                 {[0, 1, 2].map(item => (
                   <div className={styles.item}>
                     {item < userInfo.number && (
                       <img src={require('../images/01/yidacheng.png')} alt="" />
+                    )}
+                    {item == 2 && (
+                      <img
+                        onClick={() => {
+                          setShowGift(true);
+                        }}
+                        className={styles.search}
+                        src={require('../images/03/search.png')}
+                      />
                     )}
                   </div>
                 ))}
@@ -486,6 +635,28 @@ export default () => {
             <img src={require('../images/02/02.png')} alt="" />
           </div>
           <div className={'swiper-slide ' + styles.slide4}>
+            <img
+              onClick={() => setShowRuleModal(true)}
+              src={require('../images/01/rule.png')}
+              className={styles.ruleImg}
+              alt=""
+            />
+            <div className={styles.list}>
+              {[0, 1, 2].map(item => (
+                <div className={styles.item}>
+                  {item < userInfo.number && (
+                    <img src={require('../images/01/yidacheng.png')} alt="" />
+                  )}
+                  <img
+                    onClick={() => {
+                      setShowGift(true);
+                    }}
+                    className={styles.search}
+                    src={require('../images/03/search.png')}
+                  />
+                </div>
+              ))}
+            </div>
             <a
               target="_blank"
               href="https://www.facebook.com/TheThroneOfGirlTW/"
@@ -626,10 +797,10 @@ export default () => {
             />
             <div className={styles.formlist}>
               <div className={styles.item}>
-                <select name="" id="" onChange={changeSource}>
+                <select defaultValue="1" name="" id="" onChange={changeSource}>
                   <option value="1">台湾886</option>
-                  <option value="2">香港886</option>
-                  <option value="3">澳门886</option>
+                  <option value="2">香港852</option>
+                  <option value="3">澳门853</option>
                 </select>
                 <input
                   onChange={e => changeInput(e.target.value, 'phone')}
@@ -775,10 +946,10 @@ export default () => {
               onClick={() => setShowRuleModal(false)}
               src={require('../images/01/close.png')}
             />
-            <img
-              className={styles.ruleimg}
-              src={require('../images/login/rule.png')}
-            />
+            <div
+              className={styles.content}
+              dangerouslySetInnerHTML={{ __html: ruleText[swiperIndex] }}
+            ></div>
           </div>
         </div>
       )}
@@ -795,7 +966,7 @@ export default () => {
               src={require('../images/01/close.png')}
             />
             <div className={styles.tip}>複製您的專屬網址，召集好友拿好禮！</div>
-            <div className={styles.code} value={userInfo.share_url}></div>
+            <div className={styles.code}>{userInfo.share_url}</div>
             <img
               onClick={() => copyText()}
               className={styles.submit}
@@ -829,6 +1000,19 @@ export default () => {
           </div>
         </div>
       )}
+      {showGift && (
+        <div className={styles.modal + ' ' + styles.success}>
+          <div className={styles.mask} onClick={() => setShowGift(false)}></div>
+          <div className={styles.container}>
+            <img
+              className={styles.close}
+              onClick={() => setShowGift(false)}
+              src={require('../images/01/close.png')}
+            />
+            <video autoPlay src="/1.mp4"></video>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
@@ -858,9 +1042,9 @@ function copyToClipboard(text) {
     var msg = successful
       ? '成功复制到剪贴板'
       : '该浏览器不支持点击复制到剪贴板';
-    alert(msg);
+    // alert(msg);
   } catch (err) {
-    alert('该浏览器不支持点击复制到剪贴板');
+    // alert('该浏览器不支持点击复制到剪贴板');
   }
 
   document.body.removeChild(textArea);
