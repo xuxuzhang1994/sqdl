@@ -9,6 +9,7 @@ let formData = {
   source: '1',
 };
 let swiper;
+let videoIndex = 0;
 
 export default () => {
   const [showLoginModal, setShowLoginModal] = useState(false);
@@ -24,7 +25,7 @@ export default () => {
   const [indexData, setIndexData] = useState({});
   const [radioStatus, setRadioStatus] = useState(false);
   const [showGift, setShowGift] = useState(false);
-  const [showRule, setShowRule] = useState(true);
+  const [showVideo, setShowVideo] = useState(false);
   let [time, setTime] = useState(0);
   const [uid, setUid] = useState('');
   const [userInfo, setUserInfo] = useState({});
@@ -213,8 +214,24 @@ export default () => {
     }
   }, [uid]);
 
+  const parseNumber = number => {
+    const string = String(number);
+    let list = [];
+    for (let i = 3; i < string.length; i = i + 3) {
+      const str = string.substring(i - 3, i);
+      list.push(str);
+      if (i >= string.length - 3) {
+        list.push(string.substring(i, string.length));
+      }
+    }
+    // const list = number.
+    console.log({ list });
+    return list.join();
+  };
+
   const getIndexData = () => {
     request('/api/homeIndex').then(data => {
+      data.data.number_text = parseNumber(data.data.total);
       setIndexData(data.data);
       console.log(data.data);
     });
@@ -260,7 +277,7 @@ export default () => {
       setShowLoginErrorModal(true);
       return;
     }
-    if (!formData.phone) {
+    if (!formData.code) {
       setErrText('請填寫驗證碼！');
       setShowLoginErrorModal(true);
       return;
@@ -282,9 +299,10 @@ export default () => {
       })
       .then(data => {
         if (data.code == 0) {
-          showYuyueSuccessModal(true);
+          setShowYuyueSuccessModal(true);
         } else {
-          alert(data.msg);
+          setErrText(data.msg);
+          setShowLoginErrorModal(true);
         }
       });
   };
@@ -475,7 +493,8 @@ export default () => {
                   src={require('../images/kv/yuyue.png')}
                 />
                 <div className={styles.number}>
-                  已 有 {indexData.total} 位 公 主 蒞 臨 米 德 加 爾 特 大 陸
+                  已 有 {indexData.number_text} 位 公 主 蒞 臨 米 德 加 爾 特 大
+                  陸
                 </div>
                 <div className={styles.download}>
                   <a target="_blank" href="https://cutt.ly/5fTbEii">
@@ -496,6 +515,11 @@ export default () => {
                 className={styles.tips}
                 src={require('../images/kv/tips.png')}
               />
+              <img
+                className={styles.play}
+                onClick={() => setShowVideo(true)}
+                src={require('../images/kv/play.png')}
+              />
             </div>
           </div>
           <div className={'swiper-slide ' + styles.slide2}>
@@ -508,9 +532,13 @@ export default () => {
             <div className={styles.numbers}>
               <div className={styles.top}>已加入/pre-registration</div>
               <div className={styles.bottom}>
-                <span>{indexData.total}</span>位公主
+                <span>{indexData.number_text}</span>位公主
               </div>
             </div>
+            <div
+              style={{ width: (indexData.total / 300000) * 9.6 + 'rem' }}
+              className={styles.processmask}
+            ></div>
             <div className={styles.process}>
               {/* <div className={styles.imgs}>
               <img className={styles.item} src={require('../images/01/circle.png')} />
@@ -524,7 +552,7 @@ export default () => {
                 <div className={styles.border}></div>
               </div> */}
                 <img
-                  style={{ left: indexData.total / 30000 + '%' }}
+                  style={{ left: indexData.total / 3000 + '%' }}
                   className={styles.jd}
                   src={require('../images/01/jd.png')}
                 />
@@ -540,7 +568,7 @@ export default () => {
             />
             <div className={styles.gifts}>
               <div className={styles.item}>
-                {indexData.number > 200000 && (
+                {indexData.total > 50000 && (
                   <img
                     className={styles.yidacheng}
                     src={require('../images/01/yidacheng.png')}
@@ -548,7 +576,7 @@ export default () => {
                 )}
               </div>
               <div className={styles.item}>
-                {indexData.number > 500000 && (
+                {indexData.total > 100000 && (
                   <img
                     className={styles.yidacheng}
                     src={require('../images/01/yidacheng.png')}
@@ -556,7 +584,7 @@ export default () => {
                 )}{' '}
               </div>
               <div className={styles.item}>
-                {indexData.number > 1000000 && (
+                {indexData.total > 150000 && (
                   <img
                     className={styles.yidacheng}
                     src={require('../images/01/yidacheng.png')}
@@ -564,7 +592,7 @@ export default () => {
                 )}{' '}
               </div>
               <div className={styles.item}>
-                {indexData.number > 2000000 && (
+                {indexData.total > 200000 && (
                   <img
                     className={styles.yidacheng}
                     src={require('../images/01/yidacheng.png')}
@@ -572,7 +600,7 @@ export default () => {
                 )}{' '}
               </div>
               <div className={styles.item}>
-                {indexData.number > 3000000 && (
+                {indexData.total > 300000 && (
                   <img
                     className={styles.yidacheng}
                     src={require('../images/01/yidacheng.png')}
@@ -580,6 +608,7 @@ export default () => {
                 )}{' '}
                 <img
                   onClick={() => {
+                    videoIndex = 1;
                     setShowGift(true);
                   }}
                   className={styles.search}
@@ -610,6 +639,7 @@ export default () => {
                     {item == 2 && (
                       <img
                         onClick={() => {
+                          videoIndex = 2;
                           setShowGift(true);
                         }}
                         className={styles.search}
@@ -1009,7 +1039,28 @@ export default () => {
               onClick={() => setShowGift(false)}
               src={require('../images/01/close.png')}
             />
-            <video autoPlay src="/1.mp4"></video>
+            <video autoPlay loop src={`./${videoIndex + 1}.mp4`}></video>
+          </div>
+        </div>
+      )}
+      {showVideo && (
+        <div className={styles.modal + ' ' + styles.video}>
+          <div
+            className={styles.mask}
+            onClick={() => setShowVideo(false)}
+          ></div>
+          <div className={styles.container}>
+            <img
+              className={styles.close}
+              onClick={() => setShowVideo(false)}
+              src={require('../images/01/close.png')}
+            />
+            <video
+              controls
+              autoPlay
+              loop
+              src="https://thethroneofgirl.smartplay.com.tw/media/%E5%B0%91%E5%A5%B3CB-PV.mp4"
+            ></video>
           </div>
         </div>
       )}

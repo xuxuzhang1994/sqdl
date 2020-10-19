@@ -113,7 +113,7 @@ img {
         width: 0.36rem;
       }
       .name {
-        width: 1rem;
+        width: 0.6rem;
         overflow: hidden;
         text-overflow: ellipsis;
         word-break: keep-all;
@@ -129,13 +129,14 @@ img {
       }
       .outbox {
         position: absolute;
-        bottom: -1.2rem;
+        bottom: -0.8rem;
         z-index: 99;
         background: url('../images/login/logoutbg.png');
         background-size: contain;
-        height: 1.25rem;
-        width: 2rem;
-        padding: 0.2rem 0.2rem;
+        height: 0.83rem;
+        width: 1.32rem;
+        // padding: 0.2rem 0.2rem;
+        padding-left: 0.16rem;
         display: none;
         &:hover {
           display: block !important;
@@ -143,14 +144,15 @@ img {
         .oname {
           color: #fff;
           // border-bottom: 1px solid #fff;
-          padding: 2px 0;
-          margin-top: 0.05rem;
+          // padding: 2px 0;
+          // margin-top: 0.05rem;
           opacity: 0.8;
-          font-size: 0.2rem;
+          font-size: 0.15rem;
           width: 1.6rem;
           overflow: hidden;
           text-overflow: ellipsis;
           word-break: keep-all;
+          margin-top: 0.16rem;
         }
         .goout {
           height: 0.4rem;
@@ -268,7 +270,7 @@ img {
         display: flex;
         width: 4.6rem;
         justify-content: space-between;
-
+        margin: 0 auto;
         .gp {
           width: 2.2rem;
           cursor: pointer;
@@ -278,6 +280,19 @@ img {
           width: 2.2rem;
           cursor: pointer;
         }
+      }
+    }
+
+    .play {
+      position: absolute;
+      z-index: 99;
+      left: 12.7rem;
+      top: 4.5rem;
+      width: 0.95rem;
+      cursor: pointer;
+      transition: 0.3s;
+      &:hover {
+        // transform: rotate(120deg);
       }
     }
 
@@ -312,6 +327,20 @@ img {
         padding-left: 2rem;
         margin-top: 0.1rem;
       }
+    }
+    .processmask {
+      width: 9.8rem;
+      height: 1.4rem;
+      background-image: linear-gradient(
+        to right,
+        rgba(161, 85, 51, 0.1),
+        rgba(161, 85, 51, 0.3)
+      );
+      position: absolute;
+      left: 2.15rem;
+      top: 3.1rem;
+      // opacity: .2;
+      filter: blur(15px) brightness(100%);
     }
 
     .process {
@@ -544,7 +573,7 @@ img {
     .fb {
       position: absolute;
       top: 5.5rem;
-      left: 10.5rem;
+      left: 11.5rem;
       width: 4.36rem;
       cursor: pointer;
     }
@@ -913,6 +942,23 @@ img {
       &::-webkit-scrollbar {
         display: none;
       }
+    }
+  }
+}
+.video {
+  width: 100%;
+  .mask {
+    background: rgba(0, 0, 0, 0.8);
+  }
+  .container {
+    width: 13rem;
+    height: 80vh;
+    padding-bottom: 0.2rem;
+    background: transparent;
+    video {
+      height: 5.6rem;
+      margin: 0 auto;
+      display: -webkit-box;
     }
   }
 }
