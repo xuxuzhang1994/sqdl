@@ -120,6 +120,7 @@ img {
         font-size: 0.2rem;
         color: #a8855f;
         margin: 0 0.1rem;
+        white-space: nowrap;
         cursor: pointer;
       }
       .jiao {
@@ -224,19 +225,32 @@ img {
       }
     }
   }
+  .bgVideo {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 9;
+    // height: 100vh;
+  }
+  .loopVideo {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 9;
+    // height: 100vh;
+  }
 
   .kv {
     position: relative;
     height: 9.4rem;
     max-height: 100vh;
-
+    overflow: hidden;
     .hotbox {
       position: absolute;
       bottom: 1rem;
       z-index: 9;
       left: 50%;
       transform: translateX(-50%);
-
       .logo {
         width: 4rem;
         margin: 0 auto;
@@ -246,14 +260,19 @@ img {
 
       .yuyue {
         width: 3.97rem;
+        height: 0.8rem;
         display: -webkit-box;
         margin: 0 auto;
-        margin-bottom: 0.2rem;
+        margin-bottom: 0.1rem;
         cursor: pointer;
+        background: url('../images/kv/yuyue.png');
+        background-size: cover;
         &:hover {
           // box-shadow: -2px -5px 20px 15px #ffffff;
           // border-radius: 100px;
-          transform: scale(1.02);
+          background: url('../images/kv/yuyue-hover.png');
+          background-size: cover;
+          // transform: scale(1.02);
           transition: 0.3s;
         }
       }
@@ -263,7 +282,7 @@ img {
         font-size: 0.26rem;
         text-align: center;
         // font-weight: bold;
-        margin-bottom: 0.2rem;
+        margin-bottom: 0.1rem;
       }
 
       .download {
@@ -286,14 +305,23 @@ img {
     .play {
       position: absolute;
       z-index: 99;
-      left: 12.7rem;
-      top: 4.5rem;
+      left: 11.5rem;
+      top: 5rem;
       width: 0.95rem;
       cursor: pointer;
       transition: 0.3s;
       &:hover {
         // transform: rotate(120deg);
       }
+    }
+    .down {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0.99rem;
+      z-index: 9;
+      bottom: 0.2rem;
     }
 
     .tips {
@@ -303,6 +331,18 @@ img {
       z-index: 9;
       width: 0.37rem;
     }
+  }
+  .aniBefore {
+    opacity: 0;
+    transition: 1s;
+  }
+  .ani {
+    opacity: 1;
+  }
+
+  .slide1 {
+    max-height: 100vh;
+    overflow: hidden;
   }
 
   .slide2 {
@@ -530,7 +570,15 @@ img {
       top: 6.5rem;
       left: 3.5rem;
       width: 3.97rem;
+      height: 0.8rem;
       cursor: pointer;
+      background: url('../images/02/zj.png');
+      background-size: contain;
+      transition: 0.3s;
+      &:hover {
+        background: url('../images/02/zj-hover.png');
+        background-size: contain;
+      }
     }
     .list {
       position: absolute;
@@ -549,7 +597,7 @@ img {
           width: 0.82rem;
           position: absolute;
           right: -0.4rem;
-          top: 0.5rem;
+          bottom: 0.2rem;
         }
         .search {
           width: 0.25rem;
@@ -875,10 +923,13 @@ img {
       font-weight: bold;
     }
   }
-  video {
-    margin: 0 auto;
-    display: -webkit-box;
-    height: 4rem;
+  .videobox {
+    display: flex;
+    video {
+      margin: 0 auto;
+      display: -webkit-box;
+      height: 4rem;
+    }
   }
 }
 .login {

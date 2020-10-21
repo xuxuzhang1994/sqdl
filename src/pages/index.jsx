@@ -29,6 +29,7 @@ export default () => {
   let [time, setTime] = useState(0);
   const [uid, setUid] = useState('');
   const [userInfo, setUserInfo] = useState({});
+  const [ani, setAni] = useState(false);
   const [errText, setErrText] = useState('登錄失敗o(╥﹏╥)o，請再試一次~');
   const ruleText = [
     '',
@@ -188,6 +189,18 @@ export default () => {
     }
     // formData.share_id = share_id
     setUid(id);
+    var bgVideo = document.getElementById('bgVideo');
+    var loopVideo = document.getElementById('loopVideo');
+    bgVideo.addEventListener(
+      'ended',
+      function() {
+        //加载数据
+        bgVideo.remove();
+        setAni(true);
+        loopVideo.play();
+      },
+      false,
+    );
   }, []);
 
   useEffect(() => {
@@ -480,18 +493,39 @@ export default () => {
       <div className="swiper-container">
         <div className="swiper-wrapper">
           <div className={'swiper-slide ' + styles.slide1}>
+            <video
+              id="loopVideo"
+              loop={true}
+              muted
+              className={styles.loopVideo}
+              src="./loop.mp4"
+            ></video>
+            <video
+              id="bgVideo"
+              muted
+              className={styles.bgVideo}
+              autoPlay={true}
+              src="./part.mp4"
+            ></video>
             <div className={styles.kv}>
-              <img src={require('../images/kv/BG.png')} alt="" />
-              <div className={styles.hotbox}>
-                <img
+              {/* <img src={require('../images/kv/BG.png')} alt="" /> */}
+              <div
+                className={
+                  styles.hotbox +
+                  ' ' +
+                  styles.aniBefore +
+                  ' ' +
+                  (ani && styles.ani)
+                }
+              >
+                {/* <img
                   className={styles.logo}
                   src={require('../images/kv/LOGO.png')}
-                />
-                <img
+                /> */}
+                <div
                   className={styles.yuyue}
                   onClick={() => swiper.slideTo(1)}
-                  src={require('../images/kv/yuyue.png')}
-                />
+                ></div>
                 <div className={styles.number}>
                   已 有 {indexData.number_text} 位 公 主 蒞 臨 米 德 加 爾 特 大
                   陸
@@ -512,13 +546,35 @@ export default () => {
                 </div>
               </div>
               <img
-                className={styles.tips}
+                className={
+                  styles.tips +
+                  ' ' +
+                  styles.aniBefore +
+                  ' ' +
+                  (ani && styles.ani)
+                }
                 src={require('../images/kv/tips.png')}
               />
               <img
-                className={styles.play}
+                className={
+                  styles.play +
+                  ' ' +
+                  styles.aniBefore +
+                  ' ' +
+                  (ani && styles.ani)
+                }
                 onClick={() => setShowVideo(true)}
                 src={require('../images/kv/play.png')}
+              />
+              <img
+                className={
+                  styles.down +
+                  ' ' +
+                  styles.aniBefore +
+                  ' ' +
+                  (ani && styles.ani)
+                }
+                src={require('../images/kv/down.png')}
               />
             </div>
           </div>
@@ -650,7 +706,8 @@ export default () => {
                 ))}
               </div>
             </div>
-            <img
+            <div
+              className={styles.zj}
               onClick={() => {
                 if (!uid) {
                   setShowOtherLoginErrorModal(true);
@@ -658,10 +715,7 @@ export default () => {
                 }
                 setShowCopyModal(true);
               }}
-              className={styles.zj}
-              src={require('../images/02/zj.png')}
-              alt=""
-            />
+            ></div>
             <img src={require('../images/02/02.png')} alt="" />
           </div>
           <div className={'swiper-slide ' + styles.slide4}>
@@ -671,7 +725,7 @@ export default () => {
               className={styles.ruleImg}
               alt=""
             />
-            <div className={styles.list}>
+            {/* <div className={styles.list}>
               {[0, 1, 2].map(item => (
                 <div className={styles.item}>
                   {item < userInfo.number && (
@@ -686,7 +740,7 @@ export default () => {
                   />
                 </div>
               ))}
-            </div>
+            </div> */}
             <a
               target="_blank"
               href="https://www.facebook.com/TheThroneOfGirlTW/"
@@ -897,6 +951,7 @@ export default () => {
             <div className={styles.successtext}>恭喜您，預約成功！</div>
             <img
               className={styles.submit}
+              onClick={() => setShowYuyueSuccessModal(false)}
               src={require('../images/01/qr.png')}
               alt=""
             />
@@ -1039,7 +1094,10 @@ export default () => {
               onClick={() => setShowGift(false)}
               src={require('../images/01/close.png')}
             />
-            <video autoPlay loop src={`./${videoIndex + 1}.mp4`}></video>
+            <view className={styles.videobox}>
+              {videoIndex == 2 && <video autoPlay loop src={`./1.mp4`}></video>}
+              <video autoPlay loop src={`./${videoIndex + 1}.mp4`}></video>
+            </view>
           </div>
         </div>
       )}

@@ -60,7 +60,7 @@ request.interceptors.request.use(async (url, options) => {
   const baseUrl =
     process.env.NODE_ENV == 'development'
       ? '/servers'
-      : 'http://baoming.boxinyao.com';
+      : 'https://thethroneofgirl-pre-registration-api.smartplay.com.tw';
   if (/http[s]?:\/\/.*/.test(url)) {
     url = url;
   } else {
