@@ -149,11 +149,12 @@ img {
           // margin-top: 0.05rem;
           opacity: 0.8;
           font-size: 0.15rem;
-          width: 1.6rem;
+          width: 1rem;
           overflow: hidden;
           text-overflow: ellipsis;
           word-break: keep-all;
           margin-top: 0.16rem;
+          white-space: nowrap;
         }
         .goout {
           height: 0.4rem;
@@ -218,6 +219,8 @@ img {
         background-size: contain;
         height: 0.37rem;
         cursor: pointer;
+        position: relative;
+        z-index: 9;
         &.active {
           background: url('../images/kv/circle-active.png');
           background-size: contain;
@@ -354,9 +357,11 @@ img {
       top: 1rem;
       left: 3rem;
       color: #815c2c;
-      font-weight: bold;
-      font-size: 0.43rem;
+      // font-weight: bold;
+      font-size: 0.55rem;
       font-style: italic;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.1;
       span {
         color: #a0522f;
       }
@@ -503,7 +508,15 @@ img {
       top: 6.4rem;
       left: 12.5rem;
       width: 3.97rem;
+      height: 0.8rem;
       cursor: pointer;
+      background: url('../images/01/yuyue.png');
+      background-size: contain;
+      transition: 0.3s;
+      &:hover {
+        background: url('../images/02/before-hover.png');
+        background-size: contain;
+      }
     }
 
     .gifts {
@@ -550,9 +563,11 @@ img {
       top: 1rem;
       left: 3rem;
       color: #815c2c;
-      font-weight: bold;
-      font-size: 0.43rem;
+      // font-weight: bold;
+      font-size: 0.55rem;
       font-style: italic;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.1;
       span {
         color: #a0522f;
       }

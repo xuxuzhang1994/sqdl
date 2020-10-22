@@ -7,7 +7,7 @@ export default defineConfig({
   routes: [{ path: '/', component: '@/pages/index' }],
   proxy: {
     '/servers/': {
-      target: 'http://baoming.boxinyao.com',
+      target: 'https://thethroneofgirl-pre-registration-api.smartplay.com.tw',
       changeOrigin: true,
       pathRewrite: { '^/servers': '' },
     },

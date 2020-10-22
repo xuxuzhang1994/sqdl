@@ -230,13 +230,18 @@ export default () => {
   const parseNumber = number => {
     const string = String(number);
     let list = [];
-    for (let i = 3; i < string.length; i = i + 3) {
-      const str = string.substring(i - 3, i);
-      list.push(str);
-      if (i >= string.length - 3) {
-        list.push(string.substring(i, string.length));
+    if (string.length > 3) {
+      for (let i = 3; i < string.length; i = i + 3) {
+        const str = string.substring(i - 3, i);
+        list.push(str);
+        if (i >= string.length - 3) {
+          list.push(string.substring(i, string.length));
+        }
       }
+    } else {
+      list.push(string);
     }
+
     // const list = number.
     console.log({ list });
     return list.join();
@@ -267,8 +272,8 @@ export default () => {
     setTime(60);
     // reduceTime()
     request
-      .post('/api/sendCode', {
-        data: {
+      .get('/api/sendCode', {
+        params: {
           mobile: formData.phone,
           source: formData.source,
         },
@@ -301,8 +306,8 @@ export default () => {
       return;
     }
     request
-      .post('/api/reg', {
-        data: {
+      .get('/api/reg', {
+        params: {
           // uid: formData.share_id,
           mobile: formData.phone,
           code: formData.code,
@@ -416,7 +421,7 @@ export default () => {
               }
               onClick={() => swiper.slideTo(0)}
             >
-              首页
+              首頁
             </div>
             <div
               className={
@@ -518,14 +523,17 @@ export default () => {
                   (ani && styles.ani)
                 }
               >
-                {/* <img
-                  className={styles.logo}
-                  src={require('../images/kv/LOGO.png')}
-                /> */}
-                <div
-                  className={styles.yuyue}
-                  onClick={() => swiper.slideTo(1)}
-                ></div>
+                {indexData.login_status == 0 ? (
+                  <img
+                    className={styles.yuyue}
+                    src={require('../images/02/end.png')}
+                  />
+                ) : (
+                  <div
+                    className={styles.yuyue}
+                    onClick={() => swiper.slideTo(1)}
+                  ></div>
+                )}
                 <div className={styles.number}>
                   已 有 {indexData.number_text} 位 公 主 蒞 臨 米 德 加 爾 特 大
                   陸
@@ -545,7 +553,7 @@ export default () => {
                   </a>
                 </div>
               </div>
-              <img
+              {/* <img
                 className={
                   styles.tips +
                   ' ' +
@@ -554,7 +562,7 @@ export default () => {
                   (ani && styles.ani)
                 }
                 src={require('../images/kv/tips.png')}
-              />
+              /> */}
               <img
                 className={
                   styles.play +
@@ -617,11 +625,17 @@ export default () => {
               </div> */}
               </div>
             </div>
-            <img
-              onClick={() => setShowLoginModal(true)}
-              className={styles.yuyue}
-              src={require('../images/01/yuyue.png')}
-            />
+            {indexData.login_status == 0 ? (
+              <img
+                className={styles.yuyue}
+                src={require('../images/02/end.png')}
+              />
+            ) : (
+              <div
+                onClick={() => setShowLoginModal(true)}
+                className={styles.yuyue}
+              ></div>
+            )}
             <div className={styles.gifts}>
               <div className={styles.item}>
                 {indexData.total > 50000 && (
@@ -684,7 +698,7 @@ export default () => {
             <div className={styles.numbers}>
               <div className={styles.top}>已召集/invitation</div>
               <div className={styles.bottom}>
-                <span>{userInfo.number}</span>位好友
+                <span>{userInfo.number || 0}</span>位好友
               </div>
               <div className={styles.list}>
                 {[0, 1, 2].map(item => (
@@ -706,16 +720,24 @@ export default () => {
                 ))}
               </div>
             </div>
-            <div
-              className={styles.zj}
-              onClick={() => {
-                if (!uid) {
-                  setShowOtherLoginErrorModal(true);
-                  return;
-                }
-                setShowCopyModal(true);
-              }}
-            ></div>
+            {indexData.share_status == 0 ? (
+              <img
+                className={styles.zj}
+                src={require('../images/02/end.png')}
+                alt=""
+              />
+            ) : (
+              <div
+                className={styles.zj}
+                onClick={() => {
+                  if (!uid) {
+                    setShowOtherLoginErrorModal(true);
+                    return;
+                  }
+                  setShowCopyModal(true);
+                }}
+              ></div>
+            )}
             <img src={require('../images/02/02.png')} alt="" />
           </div>
           <div className={'swiper-slide ' + styles.slide4}>
