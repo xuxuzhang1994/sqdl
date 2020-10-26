@@ -39,15 +39,12 @@ export default () => {
 <p>
     <span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px">2020</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px">/10/</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px">2</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px">6 </span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px">1</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px">4</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px">:00 ~&nbsp;</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px;background: #FFFFFF">2020/</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px;background: #FFFFFF">11</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px;background: #FFFFFF">/</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px;background: #FFFFFF">23</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px;background: #FFFFFF">&nbsp;1</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px;background: #FFFFFF">8</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px;background: #FFFFFF">:00</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px">&nbsp;&nbsp;</span>
 </p>
-<p>
+<div>
     <span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><br/></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">活動規則：</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><br/></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px">1. 事前登錄活動期間，網頁將統計預約人數。遊戲正式上市後，</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">所有進入游戲的</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">公主殿下，</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">均</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">可在遊戲</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">内</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">領取對應的累計預約獎勵。</span>&nbsp;</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><br/></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px">2. 最終獎勵將根據【事前登錄預約累計人數】所對應的獎勵發放。</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><br/></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">累計預約獎勵具體如下：</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><br/></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">累計預約</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px">5</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">萬人，</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">遊戲正式上市</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">時將贈送：體力</span>*200、中級強化液*10</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">；</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><br/></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">累計預約</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px">10</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">萬人</span>, </span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">遊戲正式上市</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">時將贈送：熊耳</span>*1、中級思念精華*20</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">；</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><br/></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">累計預約</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px">15</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">萬人，</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">遊戲正式上市</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">時將贈送：</span>SSR帽子灰王子（阿爾貝）*1、記憶碎片*20</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">；</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><br/></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">累計預約</span>20萬人，</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">遊戲正式上市</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">時將贈送：魔法能量石</span>*30、幻水晶*200</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">；</span></span>
-</p>
-<p>
+</div>
+<div>
     <span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">累計預約</span>30萬人，</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">遊戲正式上市</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">時將贈送：</span>SSR衣服灰王子（阿爾貝）*1、預約專屬徽章+頭像框</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">。</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><br/></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px">3. 獎勵將會在遊戲正式上市後</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">開始</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">發放，屆時請</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">及時在</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">遊戲內</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">的</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">信箱</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">中</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">領取</span></span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px"><span style="font-family:微软雅黑">。</span></span>
-</p>
-<p>
-    <span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px">&nbsp;</span>
-</p>
+</div>
 <p>
     <span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 14px">&nbsp;</span>
 </p>
@@ -227,24 +224,15 @@ export default () => {
     }
   }, [uid]);
 
-  const parseNumber = number => {
-    const string = String(number);
-    let list = [];
-    if (string.length > 3) {
-      for (let i = 3; i < string.length; i = i + 3) {
-        const str = string.substring(i - 3, i);
-        list.push(str);
-        if (i >= string.length - 3) {
-          list.push(string.substring(i, string.length));
-        }
-      }
-    } else {
-      list.push(string);
+  const parseNumber = num => {
+    var result = [ ], counter = 0;
+    num = (num || 0).toString().split('');
+    for (var i = num.length - 1; i >= 0; i--) {
+    counter++;
+    result.unshift(num[i]);
+    if (!(counter % 3) && i != 0) { result.unshift(','); }
     }
-
-    // const list = number.
-    console.log({ list });
-    return list.join();
+    return result.join('');
   };
 
   const getIndexData = () => {
@@ -523,29 +511,22 @@ export default () => {
                   (ani && styles.ani)
                 }
               >
-                {indexData.login_status == 0 ? (
-                  <img
-                    className={styles.yuyue}
-                    src={require('../images/02/end.png')}
-                  />
-                ) : (
-                  <div
+                <div
                     className={styles.yuyue}
                     onClick={() => swiper.slideTo(1)}
                   ></div>
-                )}
                 <div className={styles.number}>
                   已 有 {indexData.number_text} 位 公 主 蒞 臨 米 德 加 爾 特 大
                   陸
                 </div>
                 <div className={styles.download}>
-                  <a target="_blank" href="https://cutt.ly/5fTbEii">
+                  <a target="_blank" href="https://app.adjust.com/2a0wiph">
                     <img
                       className={styles.gp}
                       src={require('../images/kv/GP.png')}
                     />
                   </a>
-                  <a target="_blank" href="https://cutt.ly/BfTbRjb">
+                  <a target="_blank" href="https://app.adjust.com/d3wjy5p">
                     <img
                       className={styles.ios}
                       src={require('../images/kv/IOS.png')}
@@ -904,9 +885,9 @@ export default () => {
             <div className={styles.formlist}>
               <div className={styles.item}>
                 <select defaultValue="1" name="" id="" onChange={changeSource}>
-                  <option value="1">台湾886</option>
+                  <option value="1">台灣886</option>
                   <option value="2">香港852</option>
-                  <option value="3">澳门853</option>
+                  <option value="3">澳門853</option>
                 </select>
                 <input
                   onChange={e => changeInput(e.target.value, 'phone')}

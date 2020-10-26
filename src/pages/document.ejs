@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
   <script src="<%= context.publicpath %>./js/setrem.js"></script>
   <link rel="stylesheet" href="<%= context.publicpath %>./css/normalize.css">
   <link rel="stylesheet" href="<%= context.publicpath %>./css/swiper.min.css">
@@ -12,15 +13,23 @@
   <meta name="keywords" content="日系戀愛劇情手游《少女的王座》正式開啟事前登錄活動！現在開始預約，SSR衣服+30連抽等著你，更有機會抽取iPhone 12 Pro等大禮！">
   <script>
     if ((navigator.userAgent.match(
-                /(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i
-                ))) {
-            window.location.href = "/mobile";
-        } else {
-            // window.location.href="你的电脑版地址";  
-        }
+      /(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i
+    ))) {
+      window.location.href = "/mobile/" + window.location.hash;
+    } else {
+      // window.location.href="你的电脑版地址";  
+    }
+    window.onload = function () { document.addEventListener('touchstart', function (event) { 
+      if (event.touches.length > 1) { 
+        event.preventDefault() } 
+      }) 
+      document.addEventListener('gesturestart', function (event) { event.preventDefault() }) 
+    }
   </script>
 </head>
+
 <body>
   <div id="root"></div>
 </body>
+
 </html>
