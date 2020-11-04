@@ -526,7 +526,7 @@ export default () => {
                       src={require('../images/kv/GP.png')}
                     />
                   </a>
-                  <a target="_blank" href="https://app.adjust.com/d3wjy5p">
+                  <a target="_blank" href="https://app.adjust.com/d3wjy5p?redirect_macos=https%3A%2F%2Fapps.apple.com%2Ftw%2Fapp%2Fid1517546329&redirect_windows=https%3A%2F%2Fapps.apple.com%2Ftw%2Fapp%2Fid1517546329">
                     <img
                       className={styles.ios}
                       src={require('../images/kv/IOS.png')}
